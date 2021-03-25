@@ -3,10 +3,9 @@ package com.ada.aerolinea.aerolineaAdaV1.controller;
 import com.ada.aerolinea.aerolineaAdaV1.model.*;
 import com.ada.aerolinea.aerolineaAdaV1.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping (path = "/aerolinea/ada/v1")
@@ -49,4 +48,23 @@ public class MainController {
     Iterable<Flight> getallflights(){
         return flightRepository.findAll();
     }
+
+
+    @GetMapping(path = "base/{id_base}")
+    public @ResponseBody
+    Optional<Base> getBaseById (@PathVariable ("id_base") int id_base){ return baseRepository.findById(id_base); }
+    @GetMapping(path = "pilot/{id_pilot}")
+    public @ResponseBody
+    Optional<Pilot> getPilotById (@PathVariable ("id_pilot")int id_pilot) { return pilotRepository.findById(id_pilot);}
+    @GetMapping(path = "airplane/{id_airplane}")
+    public @ResponseBody
+    Optional<Airplane> getAirplaneById (@PathVariable ("id_airplane") int id_airplane) { return airplaneRepository.findById(id_airplane);}
+    @GetMapping(path = "crew/{id_crew}")
+    public @ResponseBody
+    Optional<Crew> getCrewById (@PathVariable ("id_crew") int id_crew) { return crewRepository.findById(id_crew);}
+    @GetMapping(path = "flight/{id_flight}")
+    public @ResponseBody
+    Optional<Flight> getFlightById (@PathVariable ("id_flight") int id_flight) { return flightRepository.findById(id_flight);}
+
+    
 }
