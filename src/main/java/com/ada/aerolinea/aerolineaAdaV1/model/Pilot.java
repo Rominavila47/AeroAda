@@ -7,7 +7,7 @@ public class Pilot {
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id_pilot;
     private String name;
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne (cascade = CascadeType.DETACH)
     @JoinColumn (name = "base_code", referencedColumnName = "id_base")
     private Base base; //es mi llave foranea, necesito relacionarla con el objeto base de la clase tipo base
     private int hours;

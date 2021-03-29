@@ -8,7 +8,7 @@ public class Airplane {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_airplane;
     private String type;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.DETACH)
     @JoinColumn (name = "base_code", referencedColumnName = "id_base")
     private Base base;
 

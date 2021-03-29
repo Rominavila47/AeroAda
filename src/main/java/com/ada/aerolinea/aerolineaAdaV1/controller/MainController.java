@@ -66,5 +66,16 @@ public class MainController {
     public @ResponseBody
     Optional<Flight> getFlightById (@PathVariable ("id_flight") int id_flight) { return flightRepository.findById(id_flight);}
 
-    
+    @PostMapping(path = "base/create", consumes = "application/json", produces = "application/json")
+    public Base createBase (@RequestBody Base newBase) {return baseRepository.save(newBase);}
+    @PostMapping(path = "pilot/create", consumes = "application/json", produces = "application/json")
+    public Pilot createPilot (@RequestBody Pilot newPilot){return pilotRepository.save(newPilot);}
+    @PostMapping(path = "airplane/create",consumes = "application/json", produces = "application/json")
+    public Airplane createAirplane (@RequestBody Airplane newAirplane){return airplaneRepository.save(newAirplane);}
+    @PostMapping (path = "crew/create", consumes = "application/json", produces = "application/json")
+    public Crew createCrew (@RequestBody Crew newCrew){return crewRepository.save(newCrew);}
+    @PostMapping (path = "flight/create", consumes = "application/json", produces = "application/json")
+    public Flight createFlight (@RequestBody Flight newFlight){return flightRepository.save(newFlight);}
+
+
 }

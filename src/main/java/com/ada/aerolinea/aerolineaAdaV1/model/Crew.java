@@ -1,20 +1,28 @@
 package com.ada.aerolinea.aerolineaAdaV1.model;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 public class Crew {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_crew;
+
     private String name;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "base_code", referencedColumnName = "id_base")
+
+    @OneToOne //no usamos el cascade, porque me bloqueo la creqción en postman
+    @JoinColumn(name = "base_code", referencedColumnName = "id_base")
     private Base base;
+
     private String position;
+
     @JsonBackReference
-    @ManyToMany (mappedBy = "flightCrew")
+    @JsonIgnoreProperties ("flights")
+    @ManyToMany(mappedBy = "flightCrew")
     private Set<Flight> flights;
 
     public Set<Flight> getFlights() {
@@ -25,7 +33,7 @@ public class Crew {
         this.flights = flights;
     }
 
-    public int getId_crew(){
+    public int getId_crew() {
         return id_crew;
     }
 

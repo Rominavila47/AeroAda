@@ -9,18 +9,26 @@ public class Flight {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private int id_flight;
+
     private String name;
+
+
     private String origin_city;
+
     private String destination_city;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     @JoinColumn(name = "pilot", referencedColumnName = "id_pilot")
     private Pilot pilot;
-    @OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne
     @JoinColumn(name = "airplane", referencedColumnName = "id_airplane")
     private Airplane airplane;
+
     private Date departure_date;
+
     @JsonManagedReference
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.EAGER)
     @JoinTable (name = "flight_crew", joinColumns = @JoinColumn(name = "id_flight"),
             inverseJoinColumns = @JoinColumn (name = "id_crew"))
     private Set<Crew> flightCrew;
