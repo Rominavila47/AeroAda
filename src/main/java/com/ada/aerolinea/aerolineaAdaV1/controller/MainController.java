@@ -2,6 +2,7 @@ package com.ada.aerolinea.aerolineaAdaV1.controller;
 
 import com.ada.aerolinea.aerolineaAdaV1.model.*;
 import com.ada.aerolinea.aerolineaAdaV1.repository.*;
+import com.fasterxml.jackson.databind.ser.Serializers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -77,5 +78,17 @@ public class MainController {
     @PostMapping (path = "flight/create", consumes = "application/json", produces = "application/json")
     public Flight createFlight (@RequestBody Flight newFlight){return flightRepository.save(newFlight);}
 
+    @PutMapping (path = "base/update")
+    public Base updateBase (@RequestBody Base updateBase){ return baseRepository.save(updateBase);}
+    @PutMapping (path = "pilot/update")
+    public Pilot updatePilot (@RequestBody Pilot updatePilot) {return pilotRepository.save(updatePilot);}
+    @PutMapping (path = "airplane/update")
+    public Airplane updateAirplane (@RequestBody Airplane updateAirplane){return airplaneRepository.save(updateAirplane);}
+    @PutMapping (path = "crew/update")
+    public Crew updateCrew (@RequestBody Crew updateCrew){return crewRepository.save(updateCrew);}
+    @PutMapping (path = "flight/update")
+    public Flight updateflight (@RequestBody Flight updateFlight) {return flightRepository.save(updateFlight);}
+
+    
 
 }
